@@ -8,10 +8,12 @@ LE-HONG](http://mim.hus.vnu.edu.vn/phuonglh) at College of Sciences, Vietnam Nat
 This tool implements a conditional Markov model (CMM), a common probabilistic model for sequence labelling. In
 essence, CMM is a discriminative model which models the conditional probability distribution `P(tag sequence|word sequence)`. 
 This probability is decomposed into a chain of local probability distributions `P(tag|word)` by using the Markov property. 
-Each local probability distribution is a log-linear model (also called a maximum entropy model). Actually, the implemented approaches combines both 
+Each local probability distribution is a log-linear model (also called a maximum entropy model). 
+
+Actually, the implemented approaches combines both 
 a forward sequence model and a backward sequence model and token regular expressions to achieve the first-rank result of 
-the VLSP 2016 NER shared task, organized by the Vietnamese Speech and Language Processing Society. On the standard test set, 
-its F1 score is about 88.5%.   
+the [VLSP 2016 NER shared task](http://vlsp.org.vn/evaluation_campaign_NER), organized by the Vietnamese Speech and Language Processing Society. On the standard test set, 
+its F1 score is about 88.8%.
 
 The detailed approach is described in the following paper:
 
@@ -56,7 +58,8 @@ Therefore, Vitk.NER is a fast cluster computing toolkit.
 
 ### Data Files ###
 
-Pre-trained model files used by Vitk are included in the resources directory (`src/main/resources`). 
+Pre-trained model files used by Vitk.NER are included in the resources directory (`src/main/resources/`). For ease of use,
+these data files are packaged in the JAR file.  
 
 These folders can contain data specific to a natural language in
 use. Each language is specified further by a sub-directory whose name
@@ -100,16 +103,6 @@ The arguments of Vitk.NER are as follows:
    in the `eval` or `train` mode, it will preprocess the file to get
    pairs of word and tag sequences for use in evaluating or training.
     
-* `--output <output-file>`: the name of an output file containing the
-   tagging results (in the `tag` mode). Since by default, Vitk uses
-   Hadoop file system to save results, the output file is actually a
-   directory. It 
-   contains text files in JSON format, and will be created by
-   Vitk. Note that this directory must not already exist, otherwise an
-   error will be thrown because Vitk cannot overwrite an existing
-   directory. If this parameter is not specified, the result is
-   printed to the console window.
-    
 * `--dimension <dimension>`: this argument is only required in the `train` mode
   to specify the number of features (or the domain dimension) of the
   resulting Conditional Markov Model. The dimension is a positive integer and depends on
@@ -126,7 +119,7 @@ The arguments of Vitk.NER are as follows:
 * `--reversed`: this parameter does not require argument. If it is used, the tool trains or tests using
     reversed sentences to produce a backward sequence model instead of the default forward sequence model.
 
-* `memory <mem>`: specify the memory used in Spark executors, for example `4g`, `8g`. If you are training a large corpus, 
+* `--memory <mem>`: specify the memory used in Spark executors, for example `4g`, `8g`. If you are training a large corpus, 
  you should consider setting an appropriate value for this parameter for Spark efficiency and avoid out of memory errors.
 
 ### Running ###
@@ -163,9 +156,8 @@ The resulting model will be saved in the resource directory `src/main/resources/
 
 `./spark/bin/spark-submit target/ai.vitk.ner-1.0.jar --mode train --reversed `
 
-The resulting model will be saved in the resource directory `src/main/resources/ner/vi/mlr-reversed`.
-
-The resulting CMM has 32,768 dimensions (the default number of dimensions) and is saved to the
+The resulting model will be saved in the resource directory `src/main/resources/ner/vi/mlr-reversed`. 
+It has 32,768 dimensions (the default number of dimensions) and is saved to the
 default directory `src/main/resources/ner/vi/mlr-reversed/`.
 
 If you wish to run Vitk on a Spark cluster, all you need to do is to
