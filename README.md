@@ -1,8 +1,10 @@
 # Vietnamese Named Entity Recognition
 ---
 
+**NOTE: This repos is now obsolete. Interested programmers should consider to use the new repo vlp (github.com/phuonglh/vlp). NER is a module in that multiple-module project for Vietnamese Language Processing with Scala.**
+
 This is the first public release of a Vietnamese named entity recognition system, developed by [Phuong
-LE-HONG](http://mim.hus.vnu.edu.vn/phuonglh) at College of Sciences, Vietnam National University in Hanoi. 
+LE-HONG](http://mim.hus.edu.vn/lhp) at College of Sciences, Vietnam National University in Hanoi. 
 
 
 This tool implements a conditional Markov model (CMM), a common probabilistic model for sequence labelling. In
@@ -178,5 +180,5 @@ If you use Vitk.NER in your research, please credit our work by citing the follo
 
 Any bug reports, suggestions and collaborations are welcome. I am reachable at:
 
-*    [LE-HONG Phuong](http://mim.hus.vnu.edu.vn/phuonglh)
+*    [LE-HONG Phuong](http://mim.hus.edu.vn/lhp/)
 *    College of Science, Vietnam National University in Hanoi
